@@ -1,0 +1,76 @@
+##Practica 3
+*Referencias e inmutabilidad de String
+1.-System.out.println(a == b);
+Imprime falso por que a y b usan un tipo de memoria distinta por tanto no lo ve igual 
+2.-System.out.println(a == c);
+Imprime verdadero por que a y c tiene lo mismo, c es igual a Ja + va osea Java, que tambien es a
+3.-System.out.println(a == d);
+Imprime falso por que la instruccoin que convierte d en java se ejecuta en un tiempo diferente al que ocurre la instruccion, por lo que imprime falso 
+4.-System.out.println(a.equals(d));
+La instruccion ecuals si compara el contenido y por tanto devuelve true 
+5.-b = b.concat(" 21");
+Hace que a b "Java" se sume los caracteres " 21"
+6.-System.out.println(a);
+Imprime el valor de a "Java"
+7.-System.out.println(b);
+Imprime el valor de b "Java 21"
+
+*Operaciones e índices en StringBuilder
+
+1.-sb.delete(1, 4);
+Borra todos los terminos de 1 al 4, en este caso el termino con el que se construyo sb es "ABCDE", como inicia desde el cero "A", entonces solo borra "CBD" osea los terminos hasta el 4, no es borrar cuatro caracteres 
+2.-sb.insert(1, "xyz");
+Al valor actual de sb "AE" se le agrega "xyz"desde el valor 1 osea se pone despues de la A
+3.-sb.reverse();
+Hace que los caracteres actuales vallan en reversa "EZYXA
+4.-sb.replace(1, 4, "-");
+Aqui remplaza los valores del 1 al 4 con -, por tanto queda "E-A" similar al primer caso 
+5.-System.out.println(sb);
+Imprime el valor actual de sb, que es "E-A"
+6.-System.out.println(sb.length());
+Este imprime lo que seria el tamaño que tiene, que es de 3, por que esta "E-A"
+7.-System.out.println(sb.capacity());
+Aqui lo que imprime es la capacidad de sb que en este caso es de 21
+
+La diferencia de lenght y capacity es que uno esel tamaño, osea ed lo que tiene guardado, y capacity la capacidad total que puede guardar 
+
+*Referencias compartidas
+1.-StringBuilder a = new StringBuilder("Hola");
+Crea un objeto al que se le asignan los caracteres "Hola"
+2.-StringBuilder b = a;
+Crea un onjeto que se vuelve igual al objeto a 
+3.-StringBuilder c = new StringBuilder("Hola");
+Crea un onjeto al que se le asignan los caracteres "Hola"
+4.-a.append(" mundo");
+Modifica el objeto a agregandole "mundo", sin crear un objeto nuevo, solo modifica el mismo, por loque tambien afecta a b
+5.-b.delete(0, 5);
+Borra todos los elementos del 0-5 osea el 1,2,3,4, que en el caso de b es su totalidad, cabe mencionar que como a y b comparten objeto se borra en ambos 
+6.-System.out.println(a);
+Imprime los valores de a, que son "mundo"
+7.-System.out.println(b);
+Imprime los valores de b, que son los mismos de a, osea "mundo"
+8.-System.out.println(c);
+Imprime los valores de c, que en este caso son "Hola"
+9.-System.out.println(a == b);
+IMprime verdadero, por que a y b son exactamente lo mismo
+10.-System.out.println(a.equals(b));
+Imprime verdadero, por que a y b son iguales en la memoria 
+11.-System.out.println(a.equals(c));
+Imprime false, por que a no es igual a c
+
+*Elimina Caracteres Duplicados
+
+Explica cómo detectas los caracteres que ya aparecieron y cuántos recorridos realiza tu solución:
+Tengo dos bucles, uno que recorre caracter por caracter del texto original, y dentro de este tengo otro for, que hace basicamente lo mismo pero que ahora compara caracter por caracter la varible resultando, y dependiendo si "existe" es falso o verdadero se agrega con un append al resultado.
+Y en cuanto alas veces que se repiten ambos for depende totalmente de lo ingresado, con la diferencia de que el segundo se repite la cantidad de caracters que haya guardado resultado
+
+*Editor de Texto
+
+1.-¿Por qué los atributos del editor deben ser privados?
+Para hacerlos mas "seguros", asi nunguna otra clase externa se puede meter con los datos que tengo
+2.-¿Qué diferencia hay entre un método public y uno private?
+El public la libre acceso a cualquier otra clase, pero el private solo deja hacer cambios dentro de su misma clase
+3.-Si quitas public de un método, ¿qué acceso tiene y puede llamarlo PruebaEditor desde el mismo paquete?
+Si lo quitas se cambia en automatico a package-private, y PruebaEditor podria invocarlo al estar en el mismo paquete
+4.-¿En qué se diferencia el acceso de paquete de protected? 
+El paquete solo da acceso a clases que pertenescan a la misma carpeta, mientras que el proteceted hace lo mismo, con el extra de que permite permisos para clases "hijas" con herencia
